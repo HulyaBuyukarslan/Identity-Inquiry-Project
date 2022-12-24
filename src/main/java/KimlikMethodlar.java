@@ -1,3 +1,4 @@
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,6 +9,8 @@ public class KimlikMethodlar {
     static Scanner input = new Scanner(System.in);
     static Map<String, KimlikPojo> kimlikListesi = new HashMap<>();
     static Set<String> kimlikNumaralari = kimlikListesi.keySet();
+
+    static Set<Map.Entry<String, KimlikPojo>> kimlikListesiSet = kimlikListesi.entrySet();
 
 
     public static void saveInfo() throws InterruptedException {
@@ -30,8 +33,11 @@ public class KimlikMethodlar {
 
                 KimlikPojo kimlikObje = new KimlikPojo(kimlikNumarasi, tamAd, adres, telefonNumarasi);
                 kimlikListesi.put(kimlikNumarasi, kimlikObje);
-                System.out.println(kimlikListesi);
 
+                for (Map.Entry<String, KimlikPojo> kimlik : kimlikListesiSet) {
+                    System.out.println(kimlik);
+                }
+                System.out.println();
                 System.out.println("Bilgilerini verdiğiniz kişi başarıyla eklenmiştir.\n" +
                         "Kişi eklemeye devam etmek için 1 'e basiniz\n" +
                         "Anasayfaya dönmek için 2' basınız\n" +
@@ -46,7 +52,6 @@ public class KimlikMethodlar {
                 } else {
                     cikis();
                 }
-
             }
         } else {
             System.out.println("Yanlış kimlik numarası girdiniz");
@@ -56,16 +61,15 @@ public class KimlikMethodlar {
     }
 
     public static void getInfo() throws InterruptedException {
-        System.out.println("----------# KİŞİ ARAMA SAYFASI #----------");
+        System.out.println("----------# KİMLİK ARAMA SAYFASI #----------");
         System.out.println("Aramak istediğiniz kişinin kimlik numarasını giriniz");
         String arananKimlik = input.nextLine();
 
-        // if (arananKimlik.matches("[0-9]{4}")) {
         if (kimlikNumaralari.contains(arananKimlik)) {
             KimlikPojo kimlik = kimlikListesi.get(arananKimlik);
             System.out.println(kimlik);
+            System.out.println();
             System.out.println("Kişi aramaya devam etmek için 1 'e basiniz\n" +
-
                     "Anasayfaya dönmek için 2' basınız\n" +
                     "Çıkmak için herhangi bir tuşa basınız");
 
@@ -77,7 +81,7 @@ public class KimlikMethodlar {
             } else {
                 cikis();
             }
-            //    }
+
         } else {
             System.out.println("Böyle bir kimlik numarası yoktur.");
             getInfo();
@@ -86,17 +90,17 @@ public class KimlikMethodlar {
     }
 
     public static void removeInfo() throws InterruptedException {
-        System.out.println("----------# KİŞİ SİLME SAYFASI #----------");
+        System.out.println("----------# KİMLİK SİLME SAYFASI #----------");
         System.out.println("Silmek istediğiniz kişinin kimlik numarasını giriniz");
         String silinecekKimlik = input.nextLine();
 
-        //    if (silinecekKimlik.matches("[0-9]{4}")) {
         if (kimlikNumaralari.contains(silinecekKimlik)) {
             System.out.println(kimlikListesi.get(silinecekKimlik));
             kimlikListesi.remove(silinecekKimlik);
-            System.out.println(kimlikListesi);
-            System.out.println("İstediğiniz kişi başarıyla silindi\n" +
-                    "Kişi silmeye devam etmek için 1 'e basiniz\n" +
+            System.out.println("İstediğiniz kimlik başarıyla silindi");
+            System.out.println();
+            System.out.println("***** KİMLİK LİSTESİ *****\n" + kimlikListesi);
+            System.out.println(  "Kimlik silmeye devam etmek için 1 'e basiniz\n" +
                     "Anasayfaya dönmek için 2' basınız\n" +
                     "Çıkmak için herhangi bir tuşa basınız");
 
@@ -109,7 +113,7 @@ public class KimlikMethodlar {
             } else {
                 cikis();
             }
-            //    }
+
         } else {
             System.out.println("Böyle bir kimlik numarası yoktur.");
             removeInfo();
@@ -119,10 +123,9 @@ public class KimlikMethodlar {
     }
 
 
-    static void cikis() throws InterruptedException {
-        System.out.println(" Sayfadan çıkış yapılıyor...");
+    public static void cikis() throws InterruptedException {
+        System.out.println("Sayfamizi ziyaret ettiginiz icin tesekkur ederiz!!!\n" + "Cikis yapiliyor...");
         Thread.sleep(2000);
-        System.exit(0);
 
     }
 
