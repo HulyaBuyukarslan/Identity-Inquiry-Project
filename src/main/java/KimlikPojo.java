@@ -2,7 +2,7 @@ public class KimlikPojo {
     // kimlik numarasini(4 haneli), tam ismini, adresini, telefonunu
 
     private String kimlikNo;
-   public String tamAd;
+    public String tamAd;
     private String adres;
     private String telefon;
 
@@ -54,12 +54,12 @@ public class KimlikPojo {
 
     @Override
     public String toString() {
-        return "KimlikPojo{" +
-                "kimlikNo='" + kimlikNo + '\'' +
-                ", tamAd='" + tamAd + '\'' +
-                ", adres='" + adres + '\'' +
-                ", telefon='" + telefon + '\'' +
-                '}';
+        return
+                "kimlikNo= " + kimlikNo + ',' +
+                "tamAd= " + tamAd + ',' +
+                "adres= " + adres + ',' +
+                "telefon= " + telefon ;
+
     }
 
 }
